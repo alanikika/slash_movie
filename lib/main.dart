@@ -1,7 +1,8 @@
+import 'package:auth/auth.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:shared/common/routes.dart';
+import 'package:shared/shared.dart';
 import 'package:slash_movie/bloc/bloc_observer.dart';
 import 'package:slash_movie/ui/splash_screen.dart';
 import 'package:slash_movie/ui/welcome_screen.dart';
@@ -28,6 +29,11 @@ class AppModule extends Module {
         ChildRoute(
           Modular.get<Routes>().welcome,
           child: (_, __) => const WelcomeScreen(),
+        ),
+        ModuleRoute(
+          Modular.get<Routes>().authModule,
+          module: AuthModule(),
+          transition: TransitionType.rightToLeftWithFade,
         ),
       ];
 }

@@ -1,7 +1,15 @@
 library auth;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:auth/presentation/auth_screen.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared/common/routes.dart';
+
+class AuthModule extends Module {
+  @override
+  List<ModularRoute> get routes => [
+        ChildRoute(
+          Modular.get<Routes>().authPage,
+          child: (context, args) => const AuthScreen(),
+        )
+      ];
 }

@@ -30,6 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  auth:
+    path: features/auth
+
   core:
     path: libraries/core
   dependencies:
