@@ -1,5 +1,5 @@
-name: dependencies
-description: Dependencies module
+name: shared
+description: Shared module
 version: 0.0.1
 homepage:
 publish_to: 'none'
@@ -12,22 +12,18 @@ dependencies:
   flutter:
     sdk: flutter
 
-  #UI
-  cached_network_image: ^3.2.0
-  fluttertoast: ^8.0.8
-
-  #CORE
-  dio: ^4.0.4
-  equatable: ^2.0.3
-  flutter_bloc: ^7.3.0
-  flutter_modular: ^4.3.0
-  get_it: ^7.2.0
+  core:
+    path: ../core
+  dependencies:
+    path: ../dependencies
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
 
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:

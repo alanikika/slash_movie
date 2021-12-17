@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared/shared.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -31,6 +33,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigationPage() {
-    ///TODO: Navigate to welcome screen
+    Modular.to.pushReplacementNamed(Modular.get<Routes>().welcome);
   }
 }
