@@ -6,6 +6,7 @@ import 'package:shared/common/routes.dart';
 
 export 'common/image_path.dart';
 export 'common/routes.dart';
+export 'widgets/custom_button.dart';
 
 class SharedModule extends Module {
 

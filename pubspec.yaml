@@ -32,6 +32,8 @@ dependencies:
 
   auth:
     path: features/auth
+  movies:
+    path: features/movies
 
   core:
     path: libraries/core

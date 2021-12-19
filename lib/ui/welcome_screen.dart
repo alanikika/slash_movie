@@ -36,27 +36,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       fontWeight: FontWeight.w500,
                     ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Modular.to.pushNamed(Modular.get<Routes>().authModule);
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    color: Colors.blueAccent,
-                    borderRadius: BorderRadius.circular(24.0),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Getting Start'.toUpperCase(),
-                      style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                    ),
-                  ),
-                ),
+              CustomButton(
+                onTap: () =>
+                    Modular.to.pushNamed(Modular.get<Routes>().movieModule),
+                label: 'Getting Start',
               ),
             ],
           ),

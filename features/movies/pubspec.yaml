@@ -1,8 +1,7 @@
-name: core
-description: Core module
+name: movies
+description: Movies module
 version: 0.0.1
 homepage:
-publish_to: 'none'
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
@@ -13,9 +12,9 @@ dependencies:
     sdk: flutter
 
   dependencies:
-    path: ../dependencies
+    path: ../../libraries/dependencies
   shared:
-    path: ../shared
+    path: ../../libraries/shared
 
 dev_dependencies:
   flutter_test:
