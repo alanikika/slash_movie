@@ -38,7 +38,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
               CustomButton(
                 onTap: () =>
-                    Modular.to.pushNamed(Modular.get<Routes>().movieModule),
+                    Modular.to.pushNamed(Modular.get<Routes>().authModule),
                 label: 'Getting Start',
               ),
             ],

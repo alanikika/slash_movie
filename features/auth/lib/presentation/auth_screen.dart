@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared/shared.dart';
 
 class AuthScreen extends StatelessWidget {
@@ -6,6 +7,9 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController usernameController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -23,18 +27,20 @@ class AuthScreen extends StatelessWidget {
               ),
               Image.asset(ImagePath.appIcon),
               const SizedBox(height: 32.0),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: "User name",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                minLines: 1,
+              TextInput(
+                controller: usernameController,
+                label: "User name",
+              ),
+              const SizedBox(height: 16.0),
+              TextInput(
+                controller: passwordController,
+                label: "Password",
               ),
               const SizedBox(height: 32.0),
               CustomButton(
-                onTap: () {},
+                onTap: () {
+                  Modular.to.pushNamed(Modular.get<Routes>().movieModule);
+                },
                 label: 'Login',
               )
             ],
