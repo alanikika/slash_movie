@@ -14,14 +14,37 @@ class MoviesBloc extends Bloc<MovieEvent, MoviesState> {
 
   @override
   Stream<MoviesState> mapEventToState(MovieEvent event) async* {
+    final currentState = state;
+
     if (event is LoadMovies) {
       try {
-        yield MoviesLoading();
+        MovieEntity _movieEntity = MovieEntity();
+        if (event.isInitial) {
+          yield MoviesLoading();
+          _movieEntity = await movieUseCases.getMovies(page: 1);
+        } else if (currentState is MoviesHasData &&
+            !_movieHasReachedMax(currentState)) {
+          _movieEntity =
+              await movieUseCases.getMovies(page: currentState.currentPage + 1);
+        }
 
-        List<Movies> _movieEntity = await movieUseCases.getMovies();
-
-        if (_movieEntity.isNotEmpty) {
-          yield MoviesHasData(data: _movieEntity);
+        if (_movieEntity.data?.movies.length != null) {
+          if (event.isInitial) {
+            yield MoviesHasData(
+              hasReachedMax:
+                  _movieEntity.data!.movies.isNotEmpty ? false : true,
+              currentPage: _movieEntity.data?.pageNumber as int,
+              data: _movieEntity.data?.movies as List<Movies>,
+            );
+          } else {
+            MoviesHasData hasData = state as MoviesHasData;
+            yield MoviesHasData(
+              hasReachedMax:
+                  _movieEntity.data!.movies.isNotEmpty ? false : true,
+              currentPage: _movieEntity.data?.pageNumber as int,
+              data: hasData.data + (_movieEntity.data?.movies as List<Movies>),
+            );
+          }
         } else {
           yield MoviesNoData(message: "No Movie Available");
         }
@@ -35,4 +58,7 @@ class MoviesBloc extends Bloc<MovieEvent, MoviesState> {
       }
     }
   }
+
+  bool _movieHasReachedMax(MoviesState state) =>
+      state is MoviesHasData && state.hasReachedMax;
 }

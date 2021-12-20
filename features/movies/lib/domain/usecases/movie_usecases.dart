@@ -2,7 +2,7 @@ import 'package:movies/domain/entities/movie_entity.dart';
 import 'package:movies/domain/repositories/movie_repositories.dart';
 
 abstract class MovieUseCases {
-  Future<List<Movies>> getMovies();
+  Future<MovieEntity> getMovies({required int page});
 }
 
 class MovieUseCasesImpl extends MovieUseCases {
@@ -12,7 +12,7 @@ class MovieUseCasesImpl extends MovieUseCases {
   MovieUseCasesImpl({required this.movieRepositories});
 
   @override
-  Future<List<Movies>> getMovies() async {
-    return await movieRepositories.getMovies();
+  Future<MovieEntity> getMovies({required int page}) async {
+    return await movieRepositories.getMovies(page: page);
   }
 }

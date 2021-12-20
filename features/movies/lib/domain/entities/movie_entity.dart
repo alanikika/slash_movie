@@ -3,41 +3,21 @@ class MovieEntity {
     this.status,
     this.statusMessage,
     this.data,
-    this.meta,
   });
 
   String? status;
   String? statusMessage;
   Data? data;
-  Meta? meta;
-}
-
-class Meta {
-  Meta({
-    this.serverTime,
-    this.serverTimezone,
-    this.apiVersion,
-    this.executionTime,
-  });
-
-  int? serverTime;
-  String? serverTimezone;
-  int? apiVersion;
-  String? executionTime;
 }
 
 class Data {
   Data({
-    this.movieCount,
-    this.limit,
-    this.pageNumber,
-    this.movies,
+    required this.pageNumber,
+    required this.movies,
   });
 
-  int? movieCount;
-  int? limit;
-  int? pageNumber;
-  List<Movies>? movies;
+  int pageNumber;
+  List<Movies> movies;
 }
 
 class Movies {

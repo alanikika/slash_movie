@@ -1,9 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:movies/data/models/movie_response.dart';
 
 abstract class MovieRemoteDataSource {
-  Future<MovieResponse> getMovies();
+  Future<MovieResponse> getMovies({required int page});
 }
 
 class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
@@ -12,14 +11,15 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
   MovieRemoteDataSourceImpl({required this.dio});
 
   @override
-  Future<MovieResponse> getMovies() async {
+  Future<MovieResponse> getMovies({required int page}) async {
     try {
       final response = await dio.get(
         "https://yts.mx/api/v2/list_movies.json",
         queryParameters: {
+          "page": page,
           "limit": 10,
           "sort_by": "title",
-          "order_by": "ASC"
+          "order_by": "desc"
         },
       );
       return MovieResponse.fromJson(response.data);

@@ -15,6 +15,7 @@ dependencies:
   #UI
   cached_network_image: ^3.2.0
   fluttertoast: ^8.0.8
+  flutter_rating_bar: ^4.0.0
 
   #CORE
   dio: ^4.0.4

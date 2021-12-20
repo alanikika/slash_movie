@@ -19,19 +19,28 @@ class MoviesLoading extends MoviesState {
 }
 
 class MoviesHasData extends MoviesState {
+  final int currentPage;
   final List<Movies> data;
+  final bool hasReachedMax;
 
-  MoviesHasData({required this.data});
-  
+  MoviesHasData({
+    required this.currentPage,
+    required this.data,
+    required this.hasReachedMax,
+  });
+
   @override
-  String toString() => "$tagState MoviesHasData";
+  List<Object?> get props => [currentPage, data, hasReachedMax];
+
+  @override
+  String toString() => "$tagState MoviesHasData => Page $currentPage, isMax: $hasReachedMax";
 }
 
 class MoviesNoData extends MoviesState {
   final String message;
 
   MoviesNoData({required this.message});
-  
+
   @override
   String toString() => "$tagState MovieNoData";
 }
@@ -46,7 +55,6 @@ class MoviesNoInternetConnection extends MoviesState {
 }
 
 class MoviesError extends MoviesState {
-
   final String message;
 
   MoviesError({required this.message});
